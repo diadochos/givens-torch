@@ -20,6 +20,12 @@ def G_transpose(D, i, j, theta):
 
 class Rotation(nn.Module):
     def __init__(self, D):
+        """
+        >>> # Initialized as an identity.
+        >>> A, R = torch.eye(3), Rotation(3)
+        >>> torch.all(A.eq(R(A))).item()
+        True
+        """
         super().__init__()
         self.D = D
         self.theta = torch.zeros((len(list(itertools.combinations(range(self.D), 2))), ))
